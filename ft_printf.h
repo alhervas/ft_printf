@@ -10,3 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
+# include <stdarg.h>
+# include <./libft/libft.h>
+
+char	print_char();
+int		print_int();
+char	print_hex();
+char	print_str();
+int		ft_printf(char const	*str, ...);
+#endif
