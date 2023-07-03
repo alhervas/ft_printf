@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_numbers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhervas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 18:24:43 by alhervas          #+#    #+#             */
-/*   Updated: 2023/05/03 18:24:45 by alhervas         ###   ########.fr       */
+/*   Created: 2023/07/03 14:02:24 by alhervas          #+#    #+#             */
+/*   Updated: 2023/07/03 14:02:26 by alhervas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_printf.h"
+#include "./printf.h"
 
-int	ft_printf(char const	*str, ...)
+char	print_hex()
 {
-	
-}
-int	main()
-{
-	ft_printf("hola");
-	printf("hola");
+
 }

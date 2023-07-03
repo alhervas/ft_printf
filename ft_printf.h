@@ -16,9 +16,9 @@
 # include <stdarg.h>
 # include <./libft/libft.h>
 
-char	print_char();
-int		print_int();
+void	ft_putchar(char c);
+char	*ft_itoa(int n);
 char	print_hex();
-char	print_str();
+void	putstr(char *str);
 int		ft_printf(char const	*str, ...);
 #endif
