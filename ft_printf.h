@@ -14,11 +14,18 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include <./libft/libft.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
 
-void	ft_putchar(char c);
-char	*ft_itoa(int n);
-char	print_hex();
-void	putstr(char *str);
+
+int		print_char(char c);
+int		print_str(char *str);
+int		print_utils(va_list args, char str);
 int		ft_printf(char const	*str, ...);
+int		print_num(int c);
+int 	print_unsignednum (int c);
+int 	print_percent(int c);
+char	*ft_strchr(const char *str, int c);
+char	*ft_itoa(int n);
 #endif

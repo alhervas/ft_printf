@@ -10,20 +10,25 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC= 
+SRC= ft_printf.c ft_printf_utils.c
 
 NAME= libftprintf.a
 
 CC= gcc
 
+OBJS = $(SRC:.c=.o)
+
 CFLAGS= -Wall -Wextra -Werror
 
-${NAME}:
+${NAME}: ${OBJS}
+	@ar r ${NAME} ${OBJS}
 
-all: 
+all: ${NAME}
 
-clean: 
+clean:
+	@rm -f ${OBJS} ${BONUS_OBJS}
 
-fclean: 
+fclean: clean
+	@rm -f ${NAME}
 
-re: 
+re: fclena all
