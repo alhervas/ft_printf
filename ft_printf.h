@@ -23,9 +23,13 @@ int		print_char(char c);
 int		print_str(char *str);
 int		print_utils(va_list args, char str);
 int		ft_printf(char const	*str, ...);
-int		print_num(int c);
-int 	print_unsignednum (int c);
 int 	print_percent(int c);
 char	*ft_strchr(const char *str, int c);
 char	*ft_itoa(int n);
+int		ft_atoi(const char *nptr);
+int		ft_putnbr_fd_un(unsigned long long n);
+int		ft_putnbr_fd(int n);
+char	print_hex(unsigned long n);
+char	print_HEX(unsigned long n);
+char	print_hex_p(unsigned long n);
 #endif

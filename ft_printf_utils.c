@@ -12,58 +12,30 @@
 
 #include "ft_printf.h"
 
-int	print_num(int c)
-{
-	int i;
-	char *num;
-
-	i = 0;
-	num = ft_itoa(c);
-	i = print_str(num);
-	return(i);
-}
-
-int print_unsignednum (int c)
-{
-	int i;
-	int num;
-
-	i = 0;
-	num = c * -1;
-	i = print_num(num);
-	return (i);
-}
-
 int	print_char(char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	i = write (1, &c, 1);
+	i = write(1, &c, 1);
 	return (i);
 }
 
 int	print_str(char *str)
 {
 	int	a;
-	int i;
+	int	i;
 
 	i = 0;
 	a = 0;
+	if (!str)
+		return (print_str(NULL));
 	while (str[a] != '\0')
 	{
 		i = i + write(1, &str[a], 1);
 		a++;
 	}
-	return(i);
-}
-int print_percent(int c)
-{
-	int i;
-
-	i = 0;
-	i = write(1, &c, 1);
-	return(i);
+	return (i);
 }
 
 char	*ft_strchr(const char *str, int c)
@@ -159,4 +131,146 @@ char	*ft_itoa(int n)
 	}
 	result[i] = '\0';
 	return (result);
+}
+
+int	ft_atoi(const char *nptr)
+{
+	int	i;
+	int	sign;
+	int	result;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (nptr[i] == ' ' || nptr[i] == '\r' || nptr[i] == '\t'
+		|| nptr[i] == '\n' || nptr[i] == '\v' || nptr[i] == '\f')
+		i++;
+	if (nptr[i] == '-')
+		sign *= -1;
+	if (nptr[i] == '-' || nptr[i] == '+')
+		i++;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result *= 10;
+		result = result + (nptr[i] - '0');
+		i++;
+	}
+	return (result * sign);
+}
+
+int	ft_putnbr_fd_un(unsigned long long n)
+{
+	char	un;
+	int		len;
+
+	len = 0;
+	if (n >= 0)
+	{
+		un = (n % 10) + '0';
+		n = (n / 10);
+		if (n != 0)
+			len += ft_putnbr_fd(n);
+		len += write(1, &un, 1);
+	}
+	else
+	{
+		un = (n % 10) * -1 + '0';
+		n = (n / 10);
+		if (n != 0)
+			len += ft_putnbr_fd(n);
+		else
+			len += write(1, "-", 1);
+		len += write(1, &un, 1);
+	}
+	return (len);
+}
+
+int	ft_putnbr_fd(int n)
+{
+	char	un;
+	int		len;
+
+	len = 0;
+	if (n >= 0)
+	{
+		un = (n % 10) + '0';
+		n = (n / 10);
+		if (n != 0)
+			len += ft_putnbr_fd(n);
+		len += write(1, &un, 1);
+	}
+	else
+	{
+		un = (n % 10) * -1 + '0';
+		n = (n / 10);
+		if (n != 0)
+			len += ft_putnbr_fd(n);
+		else
+			len += write(1, "-", 1);
+		len += write(1, &un, 1);
+	}
+	return (len);
+}
+
+char	print_hex(unsigned long n)
+{
+	char	rest;
+	int		len;
+
+	len = 0;
+	if (n >= 0)
+	{
+		rest = (n % 16);
+		n = (n / 16);
+		if (n != 0)
+			len += print_hex(n);
+		if (rest >= 10)
+			rest = (rest - 10) + 'a';
+		else
+			rest += '0';
+		len += write(1, &rest, 1);
+	}
+	return (len);
+}
+
+char	print_HEX(unsigned long n)
+{
+	char	rest;
+	int		len;
+
+	len = 0;
+	if (n >= 0)
+	{
+		rest = (n % 16);
+		n = (n / 16);
+		if (n != 0)
+			len += print_HEX(n);
+		if (rest >= 10)
+			rest = (rest - 10) + 'A';
+		else
+			rest += '0';
+		len += write(1, &rest, 1);
+	}
+	return (len);
+}
+char	print_hex_p(unsigned long n)
+{
+	char rest;
+	int len;
+
+	len = 0;
+	len = len + write(1, "0x", 2);
+	if (n >= 0)
+	{
+		rest = (n % 16);
+		n = (n / 16);
+		if (n != 0)
+			len += print_hex(n);
+		if (rest >= 10)
+			rest = (rest - 10) + 'a';
+		else
+			rest += '0';
+		len += write(1, &rest, 1);
+	}
+	return (len);
 }

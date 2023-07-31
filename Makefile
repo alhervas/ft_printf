@@ -21,14 +21,16 @@ OBJS = $(SRC:.c=.o)
 CFLAGS= -Wall -Wextra -Werror
 
 ${NAME}: ${OBJS}
-	@ar r ${NAME} ${OBJS}
+	@ar rcs ${NAME} ${OBJS}
 
 all: ${NAME}
 
 clean:
-	@rm -f ${OBJS} ${BONUS_OBJS}
+	@rm -f ${OBJS}
 
 fclean: clean
 	@rm -f ${NAME}
 
-re: fclena all
+re: fclean all
+
+.PHONY: all clean fclean re
